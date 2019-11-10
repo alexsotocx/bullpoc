@@ -1,0 +1,14 @@
+{
+  "name": "bullpoc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "bull": "^3.12.0",
+    "typescript": "^3.7.2"
+  },
+  "devDependencies": {
+    "@types/bull": "^3.10.6",
+    "ts-node": "^8.4.1"
+  }
+}
