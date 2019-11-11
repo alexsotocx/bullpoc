@@ -1,24 +1,23 @@
 import { NotificationQueue, EmailNotificationQueue } from './queues';
 
-
-
 async function start() {
-    NotificationQueue.process(async(job) => {
-        let jobs = 100;
+  NotificationQueue.process(async (_) => {
+    let jobs = 100;
 
-        while(jobs > 0) {
-            console.log("Enque")
-            EmailNotificationQueue.add({
-                jobNumber: jobs
-            })
-            jobs--;
-        }
-    
-    });
+    while (jobs > 0) {
+      console.log("Enqueuing job", jobs);
+      EmailNotificationQueue.add({
+        jobNumber: jobs
+      }, {
+        removeOnComplete: true,
+      })
+      jobs--;
+    }
+  });
 
-    EmailNotificationQueue.process(async (job) => {
-        console.log("processing job", job.data);
-    });
+  EmailNotificationQueue.process(async (job) => {
+    console.log("processing job", job.data);
+  });
 }
 
 start();

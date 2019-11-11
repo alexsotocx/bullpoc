@@ -1,15 +1,8 @@
-import { NotificationQueue, RepeatedJobsId } from './queues';
-
-
+import { NotificationQueue, repeatOptions } from './queues';
 
 async function start() {
-  await NotificationQueue.add({started: Date.now()}, {
-    jobId: RepeatedJobsId.NOTIFICATION,
-    repeat: {
-      cron: "* * * * *",
-    }
-  });
+  await NotificationQueue.add({ started: Date.now() }, repeatOptions);
+  await NotificationQueue.close();
 }
 
-
-start().then(console.log);
+start();

@@ -9,6 +9,13 @@ export enum RepeatedJobsId {
   NOTIFICATION = "UUUUUUUUID12354",
 }
 
+export const repeatOptions = {
+  jobId: RepeatedJobsId.NOTIFICATION,
+  repeat: {
+    cron: "* * * * *",
+  }
+};
+
 export const NotificationQueue = new Bull.default(QueueNames.NOTIFICATION, {
   prefix: "development"
 });
